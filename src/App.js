@@ -7,7 +7,10 @@ import "./App.css";
 class App extends Component {
   constructor() {
     super();
-    this.state = { monsters: [] };
+    this.state = {
+      monsters: [],
+      searchField: "",
+    };
   }
   componentDidMount() {
     fetch("https://jsonplaceholder.typicode.com/users/")
@@ -18,6 +21,16 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <input
+          type="search"
+          placeholder="search monsters"
+          onChange={(element) => {
+            this.setState({ searchField: element.target.value });
+            // this.setState({ searchField: element.target.value }, () => {
+            //   console.log(this.state);
+            // });
+          }}
+        />
         <CardList monsters={this.state.monsters} />
       </div>
     );
